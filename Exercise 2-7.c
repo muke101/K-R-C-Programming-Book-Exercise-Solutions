@@ -11,7 +11,7 @@ unsigned invert(unsigned x, int p, int n)
 			10100101 & 00001110 = 00000100 
 			01010000 | 00000100 = 01010100
 	*/
-	unsigned mask = (~(~0 << p)) ^ ~(~0 << p-n);
+	unsigned mask = ~(~0 << p) ^ ~(~0 << p-n);
 	return ((x & ~mask) | (~x & mask));
 }
 

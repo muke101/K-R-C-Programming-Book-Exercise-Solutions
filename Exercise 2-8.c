@@ -1,4 +1,5 @@
 //what we learnt: don't right shift signed bits, divide them by 2 if absolutely needed. In fact, take time to think about what you're doing when signed bits are invovled at all.
+//x & 1 is great for checking indivisual bits
 
 #include <stdio.h>
 

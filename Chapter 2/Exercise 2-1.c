@@ -1,3 +1,7 @@
+/*
+Write a program to determine the ranges of char, short and int.
+*/
+
 /*It seems a practical solution to calculate these values doesn't exist only using what's given so far in K&R*/
 
 #include <stdio.h>

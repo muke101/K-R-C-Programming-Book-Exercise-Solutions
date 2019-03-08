@@ -1,3 +1,8 @@
+/*
+Write a program to remove trailing blanks and tabs from each line of input,
+and to delete entirely blank lines.
+*/
+
 /* you can use for statements without bodies to incredment/deincrement variables up to certain points! */
 
 #include <stdio.h>

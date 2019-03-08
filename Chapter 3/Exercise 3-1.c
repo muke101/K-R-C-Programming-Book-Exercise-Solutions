@@ -24,7 +24,7 @@ int binsearch(int x, int v[], int n)	{
 
 /*
 both functions are timed to 0.001 seconds (I guess it's easier to see the difference on CPU's from the 80's)
-however, in reality the new binsearch has a better worst case but a worse best cas
+however, in reality the new binsearch has a better worst case but a worse best case
 as the old one would instantly return if input was best case, while the new one still has
 to iterate a few times, even if they're faster iterations.
 */

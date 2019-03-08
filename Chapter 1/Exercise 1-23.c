@@ -1,3 +1,9 @@
+/*
+Write a program to remove all comments from a C program.
+Don't forget to handle quoted strings and character constants properly.
+C comments do not nest.
+*/
+
 /*suggestion for future - when dealing with getchar on the fly is sticky, store everything in an array first and then work on that*/
 
 #include <stdio.h>

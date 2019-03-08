@@ -1,3 +1,9 @@
+/*
+Write a program detab that replaces tabs in the input with the 
+proper number of blanks to space to the next tab stop. Assume a fixed set of
+tab stops, say every n columnes. Should n be a variable or a symbolic paramter?
+*/
+
 #include <stdio.h>
 #define tabStop 10 /*Saw no reason for a constant value to be stored as a variable.*/
 #define maxInput 1000

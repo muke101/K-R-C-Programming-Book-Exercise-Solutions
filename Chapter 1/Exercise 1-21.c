@@ -1,3 +1,11 @@
+/*
+Write a program entab that replaces strings of blanks by the
+minimum number of tabs and blanks to achieve the same spacing. Use the 
+same tab stops as for detab. When either a tab or a single balnk would suffice
+to reach a tab stop, which should be given preferance?
+*/
+
+
 #include <stdio.h>
 #define tabStop 4
 #define maxInput 10000

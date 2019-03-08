@@ -1,3 +1,9 @@
+/*
+Write the function htoi(s), which converts a string of hexadecimal
+digits (including an optinal 0x or 0X) into its equvialent integer value.
+The allowable digits are 0 through 9, a through f, and A through F.
+*/
+
 //you can be a lot more literal with using characters as bounds than you'd expect
 
 #include <stdio.h>

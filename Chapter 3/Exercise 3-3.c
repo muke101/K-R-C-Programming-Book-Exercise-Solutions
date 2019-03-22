@@ -6,8 +6,9 @@ like a-b-c and a-z0-9 and -a-z. Arrange that a leading or trailing - is
 taken literally.
 */
 
+//I do not for the life of me understand how for loop incrementation works ffs
+
 #include <stdio.h>
-#include <ctype.h>
 #define BUFFER 1000
 
 void expand(char s[], char t[])	{
@@ -15,25 +16,27 @@ void expand(char s[], char t[])	{
 	int i, j, d=0;
 
 	if (s[0] == '-')	{
-		t[0] == '-';
+		t[0] = '-';
+	}
+	else	{
+		t[0] = s[0];
 	}
 
-	for (i=1; s[i+1] != '\0'; ++i)	{
-		if (s[i] == '-')	{
-			for (j=0; (s[i-1] + j) <= s[i+1]; ++j)	{
-				t[d+j] = s[i-1] + j;
+	for (i=1; s[i] != '\0'; ++i)	{
+		if (s[i] == '-' && s[i+1] != '\0')	{ //allow trailing '-' characters
+			for (j=1; (s[i-1] + j) < s[i+1]; ++j)	{ //j=1 as to not include s[i-1]
+				t[i+d+(j-1)] = s[i-1] + j; //j-1 because the index of t starts where '-' would be
 			}
-			d+=j; //displacement between s and t after adding j more characters
+			d+=j-2; /*displacement between s and t after adding j more characters
+						-2 as takes into account '-' character's index in s and the other because for loops I guess*/
+		}
+		else	{
+			t[i+d] = s[i];
 		}
 	}
 
-	if (s[i] == '-')	{
-		t[d++] == '-';
-	}
-
-	t[d] = '\0';
+	t[i+d] = '\0';
 }
-
 
 int main()	{
 	char s[BUFFER];
@@ -41,7 +44,7 @@ int main()	{
 
 	int i, c;
 
-	for (i=0; (c=getchar()) != EOF; ++i)	{
+	for (i=0; (c=getchar()) != '\n' || c == EOF; ++i)	{
 		s[i] = c;
 	}
 	s[i] = '\0';

@@ -7,8 +7,8 @@ regardless of the machine on which it runs.
 
 /*
 Explanation - when a negative number is passed to itoa, it is multipled by -1 and reassigned to itself (n=-n). However, for signed integers the range of values is -2^31-(2^31-1),
-so asigning -(-2^31) to the signed variable n causes an integer overflow. This is fixed by storing n in an unsigned variable instead (however this cannot be done from the function
-arguments, as n must still be checked against being negative or not).
+so asigning -(-2^31) to the signed variable n causes an integer overflow, and have n remain at -2^31. This is fixed by storing n in an unsigned variable instead 
+(however this cannot be done from the function arguments, as n must still be checked against being negative or not).
 */
 
 #include <stdio.h>

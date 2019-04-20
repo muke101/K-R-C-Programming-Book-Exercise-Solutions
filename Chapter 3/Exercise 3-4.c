@@ -14,17 +14,6 @@ so asigning -(-2^31) to the signed variable n causes an integer overflow, and ha
 #include <stdio.h>
 #define BUFFER 1000
 
-
-void discardnewline(char s[])
-{
-  int i;
-  for(i = 0; s[i] != '\0'; i++)
-  {
-    if(s[i] == '\n')
-      s[i] = '\0';
-  }
-}
-
 int reverse(char s[])
 {
   char ch;

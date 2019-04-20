@@ -1,3 +1,5 @@
+/*take mod of base to pop off least significant number, cool trick*/
+
 /*
 Write the function itob(n,s,b) that converts the integer n
 into a base b character representation in the string s. In particular,
@@ -10,16 +12,6 @@ max base of 32
 
 #include <stdio.h>
 #define BUFFER 1000
-
-void discardnewline(char s[])
-{
-  int i;
-  for(i = 0; s[i] != '\0'; i++)
-  {
-    if(s[i] == '\n')
-      s[i] = '\0';
-  }
-}
 
 int reverse(char s[])
 {

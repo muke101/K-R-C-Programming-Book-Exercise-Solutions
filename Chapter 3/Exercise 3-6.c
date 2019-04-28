@@ -51,7 +51,7 @@ void itoa(int n, char s[], int w) 	{
 
 	if (i < w)	{
 		for (j=0; j <= (w-i); ++j)	{
-			s[i+j] = ' '; //j starts at 0 because i is already incremented an extra time from do-while
+			s[i+j] = ' ';
 		}
 		s[i+j] = '\0'; //restore replaced null character
 	}

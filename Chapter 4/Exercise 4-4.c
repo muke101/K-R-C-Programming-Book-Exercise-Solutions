@@ -1,6 +1,7 @@
 /*
-Given the basic framework, it's straightforward to extend the calculator. 
-Add the modulus ( % ) operator and provisions for negative numbers.
+Add commands to print the top element of the stack without popping,
+to duplicate it, and to swap the top two elements. Add a command to
+clear the stack.
 */
 
 #include <stdio.h>
@@ -36,6 +37,40 @@ double pop(void)	{
 	else 	{
 		printf("error: stack empty\n");
 		return 0.0;
+	}
+}
+
+void peek(void)	{
+	if (sp > 0)	{
+		printf("%g\n", val[sp]);
+	}
+	else 	{
+		printf("error: stack empty\n");
+	}
+}
+
+void swap(void)	{
+	if (sp > 1)	{ 
+		double tmp;
+		tmp = val[sp];
+		val[sp] = val[sp-1];
+		val[sp-1] = tmp;
+	}
+	else 	{
+		printf("error: not enough elements in stack\n");
+	}
+}
+
+void clear(void)	{
+	sp = 0; //should be enough to simply set the pointer to 0, old values will be overwritten.
+}
+
+void duplicate(void)	{
+	if (sp < MAXVAL -1)	{
+		push(val[sp]);
+	}
+	else 	{
+		printf("error: stack full\n");
 	}
 }
 

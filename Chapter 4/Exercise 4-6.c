@@ -1,6 +1,7 @@
 /*
-Add access to library functions like sin, exp and pow.
-See <math.h> in Appendix B, section 4.
+Add commands for handling variables. (It's easy to provide twenty-six 
+variables with single-letter names.) Add a variable for the most 
+recently printed value.
 */
 
 #include <stdio.h>
@@ -12,6 +13,7 @@ See <math.h> in Appendix B, section 4.
 #define NUMBER '0'
 #define MAXVAL 100
 #define BUFSIZE 100
+#define VAR '_'
 
 
 int getop(char []);
@@ -74,6 +76,11 @@ void duplicate(void)	{
 	}
 }
 
+char variable = ' '; //initially as space such that malformed use of '=' won't cause segfaults
+
+
+int asignment = 0; //hacky way to not push a variable to stack before it's been defined
+
 int getop(char s[])	{
 	int i, c;
 
@@ -88,21 +95,31 @@ int getop(char s[])	{
 		while (isalpha(s[++i] = c = getch()));
 		s[i] = '\0';
 
-		if (strcmp(s, "sin")) //we could had done all the math.h functions but effort
-			return 's';
+		if (i == 1)	{	//s is a variable
+			variable = s[0];
+			//getch(); //skip space
+			if ((c=getch()) == '=')
+				asignment = 1;
+			ungetch(c);
+			return VAR;
+		}
+
+		if (strcmp(s, "sin")) //we could had done all the math.h functions but, effort
+			return 1;
 		if (strcmp(s, "cos"))
-			return 'c';
+			return 2;
 		if (strcmp(s, "tan"))
-			return 't';
+			return 3;
 		if (strcmp(s, "exp"))
-			return 'e';
+			return 4;
+
 		printf("error: unsupported function or malformed input\n");
 		return '\n';
 	}
 
 	if (c == '-') 	{
 		s[i] = c;
-		if (!isdigit(c = getch()))	{
+		if ((c = getch()) == ' ')	{
 			return '-';
 		}
 		else
@@ -131,6 +148,24 @@ void ungetch(int c)	{
 		printf("ungetch: too many characters\n");
 	else
 		buf[bufp++] = c;
+}
+
+double variables[26];
+
+void define(char var, double n)	{
+	var = tolower(var);
+	if (var >= 97 && var <= 122)
+		variables[tolower(var)-97] = n;
+	else 
+		printf("error: variable symbol out of range\n");
+}
+
+double variableLookUp(char var)	{
+	if (var >= 97 && var <= 122)
+		return variables[tolower(var)-97];
+	else
+		printf("error: variable symbol out of range\n");
+	return 0.0;
 }
 
 int main()	{
@@ -173,18 +208,28 @@ int main()	{
 				op2 = pop();
 				push(pow(pop(), op2));
 				break;
-			case 's':
+			case 1: //such that variables can be used, using non-printable characters for math functions
 				push(sin(pop()));
 				break;
-			case 'c':
+			case 2:
 				push(cos(pop()));
 				break;
-			case 't':
+			case 3:
 				push(tan(pop()));
 				break;
-			case 'e':
+			case 4:
 				push(exp(pop()));
 				break;
+			case '=':
+				define(variable, pop());
+				break;
+			case VAR:
+				if (asignment == 0)	
+					push(variableLookUp(variable));
+				else
+					asignment = 0;
+				break;
+				
 			case '\n':
 				printf("\t%.8g\n", pop());
 				break;

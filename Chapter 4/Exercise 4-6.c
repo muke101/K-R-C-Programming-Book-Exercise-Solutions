@@ -97,7 +97,6 @@ int getop(char s[])	{
 
 		if (i == 1)	{	//s is a variable
 			variable = s[0];
-			//getch(); //skip space
 			if ((c=getch()) == '=')
 				asignment = 1;
 			ungetch(c);
@@ -170,7 +169,7 @@ double variableLookUp(char var)	{
 
 int main()	{
 	int type;
-	double op2;
+	double op2, lastPrinted;
 	char s[MAXOP];
 
 	while ((type = getop(s)) != EOF)	{
@@ -231,7 +230,8 @@ int main()	{
 				break;
 				
 			case '\n':
-				printf("\t%.8g\n", pop());
+				lastPrinted = pop();
+				printf("\t%.8g\n", lastPrinted);
 				break;
 		}
 	}
